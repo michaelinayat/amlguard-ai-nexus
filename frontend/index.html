@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#101c2c" />
+  <title>AMLGuard AI Nexus | Intelligence Console</title>
+  <link rel="stylesheet" href="/ui/styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#dashboard" aria-label="AMLGuard home">
+        <span class="brand-mark"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M20 3 34 9v10c0 9-5.7 14.4-14 18C11.7 33.4 6 28 6 19V9z" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="m12 20 5 5 11-12" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span><strong>AMLGuard</strong><small>AI NEXUS</small></span>
+      </a>
+      <div class="workspace-label">WORKSPACE</div>
+      <nav class="nav-list" aria-label="Main navigation">
+        <button class="nav-item active" data-view="dashboard"><span class="nav-icon">◫</span> Overview</button>
+        <button class="nav-item" data-view="crypto"><span class="nav-icon">⌘</span> Crypto investigator <span class="nav-count">01</span></button>
+        <button class="nav-item" data-view="banking"><span class="nav-icon">▤</span> Card fraud lab <span class="nav-count">02</span></button>
+        <button class="nav-item" data-view="datasets"><span class="nav-icon">◉</span> Data readiness</button>
+        <button class="nav-item" data-view="alerts"><span class="nav-icon">⚑</span> Alerts <span class="nav-count" id="navAlertCount">0</span></button>
+        <button class="nav-item" data-view="cases"><span class="nav-icon">▣</span> Investigation cases</button>
+        <button class="nav-item" data-view="reports"><span class="nav-icon">▤</span> Reports</button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="environment-card"><span class="status-dot"></span><div><b>Local environment</b><small>Research mode</small></div><span class="live-pill">LOCAL</span></div>
+        <a class="nav-item link-item" href="/docs" target="_blank" rel="noreferrer"><span class="nav-icon">↗</span> API documentation</a>
+        <div class="sidebar-foot">AMLGuard AI Nexus <span>v2.0 · Research prototype</span></div>
+      </div>
+    </aside>
+
+    <main class="main-area">
+      <header class="topbar">
+        <button class="mobile-menu" id="mobileMenu" aria-label="Toggle navigation">☰</button>
+        <div class="breadcrumb">Workspace <span>/</span> <b id="crumbCurrent">Overview</b></div>
+        <div class="top-actions"><span class="privacy-label"><span class="tiny-lock">◆</span> Local data processing</span><button class="icon-button" id="refreshBtn" title="Refresh dataset status" aria-label="Refresh status">↻</button><div class="avatar">AG</div></div>
+      </header>
+
+      <div class="page-wrap">
+        <section class="view active" id="view-dashboard">
+          <div class="page-heading"><div><div class="eyebrow">FINANCIAL CRIME INTELLIGENCE</div><h1>Good to see you.</h1><p>Monitor research pipelines, inspect transaction networks, and review model signals.</p></div><div class="heading-right"><span class="date-chip"><span class="pulse"></span> LOCAL INSTANCE</span><button class="btn btn-primary" data-goto="crypto">＋ Investigate transaction</button></div></div>
+          <div class="notice notice-amber"><span class="notice-symbol">!</span><div><b>Research environment — not a production AML decision system</b><p>Scores are triage signals only. Card-fraud labels are not money-laundering labels. A model score is not proof of criminal activity.</p></div><button class="notice-close" aria-label="Dismiss notice" id="dismissNotice">×</button></div>
+          <div class="section-title-row"><div><h2>System overview</h2><p>Live status from your local FastAPI service</p></div><span class="subtle-label" id="lastUpdated">Checking service…</span></div>
+          <div class="metric-grid">
+            <article class="metric-card"><div class="metric-top"><span>Cryptocurrency pipeline</span><span class="metric-icon violet">⌘</span></div><div class="metric-value metric-status" id="cryptoStatusValue">Checking…</div><div class="metric-foot"><span class="mini-dot" id="cryptoDot"></span><span id="cryptoStatusFoot">Querying dataset readiness</span></div></article>
+            <article class="metric-card"><div class="metric-top"><span>Banking / payment pipeline</span><span class="metric-icon blue">▤</span></div><div class="metric-value metric-status" id="bankStatusValue">Checking…</div><div class="metric-foot"><span class="mini-dot" id="bankDot"></span><span id="bankStatusFoot">Querying dataset readiness</span></div></article>
+            <article class="metric-card"><div class="metric-top"><span>Scoring models</span><span class="metric-icon green">⌁</span></div><div class="metric-value" id="modelCount">0 / 2</div><div class="metric-foot"><span class="mini-dot"></span><span>Trained artifacts detected</span></div></article>
+            <article class="metric-card"><div class="metric-top"><span>Service status</span><span class="metric-icon orange">⌘</span></div><div class="metric-value" id="serviceStatus">Checking…</div><div class="metric-foot"><span class="mini-dot green-dot"></span><span id="serviceFoot">Local API connection</span></div></article>
+          </div>
+          <div class="content-grid">
+            <section class="panel pipeline-panel"><div class="panel-heading"><div><h2>Research pipelines</h2><p>Separate datasets, tasks and evaluation paths</p></div><button class="text-button" data-goto="datasets">View readiness ↗</button></div>
+              <div class="pipeline-row"><div class="pipeline-logo coin">₿</div><div class="pipeline-copy"><b>Elliptic Bitcoin</b><p>Transaction graph · Source-provided licit / illicit / unknown labels</p><div class="tag-row"><span class="tag tag-purple">Graph analytics</span><span class="tag">Classification</span></div></div><div class="pipeline-state"><span class="state-dot" id="cryptoStateDot"></span><span id="cryptoStateText">Checking</span><button class="small-outline" data-goto="crypto">Open lab</button></div></div>
+              <div class="pipeline-row"><div class="pipeline-logo bank">▤</div><div class="pipeline-copy"><b>European card-fraud dataset</b><p>Card fraud / non-fraud labels · Not an AML dataset</p><div class="tag-row"><span class="tag tag-blue">Tabular ML</span><span class="tag">No account graph</span></div></div><div class="pipeline-state"><span class="state-dot" id="bankStateDot"></span><span id="bankStateText">Checking</span><button class="small-outline" data-goto="banking">Open lab</button></div></div>
+            </section>
+            <section class="panel actions-panel"><div class="panel-heading"><div><h2>Quick actions</h2><p>Start a research task</p></div><span class="panel-kebab">•••</span></div>
+              <button class="quick-action" data-goto="crypto"><span class="quick-icon violet">⌘</span><span><b>Inspect a crypto transaction</b><small>View model signal and network neighbors</small></span><span class="action-arrow">→</span></button>
+              <button class="quick-action" data-goto="banking"><span class="quick-icon blue">▤</span><span><b>Score card-fraud features</b><small>Submit numeric model features</small></span><span class="action-arrow">→</span></button>
+              <button class="quick-action" data-goto="datasets"><span class="quick-icon green">◉</span><span><b>Check data readiness</b><small>See required files and model status</small></span><span class="action-arrow">→</span></button>
+              <a class="quick-action" href="/docs" target="_blank" rel="noreferrer"><span class="quick-icon orange">↗</span><span><b>Open API explorer</b><small>Swagger UI · Interactive endpoints</small></span><span class="action-arrow">→</span></a>
+            </section>
+          </div>
+          <section class="panel activity-panel"><div class="panel-heading"><div><h2>Operational checklist</h2><p>What needs to be ready before scoring works</p></div><span class="tag tag-amber">Setup required if data is missing</span></div><div class="checklist" id="checklist"><div class="check-row"><span class="check-circle">1</span><span>Download the approved public dataset files</span><span class="check-state pending">Pending check</span></div><div class="check-row"><span class="check-circle">2</span><span>Place files in <code>data/raw/</code></span><span class="check-state pending">Pending check</span></div><div class="check-row"><span class="check-circle">3</span><span>Run each real-data training pipeline</span><span class="check-state pending">Pending check</span></div><div class="check-row"><span class="check-circle">4</span><span>Review metrics and dataset license</span><span class="check-state required">Required</span></div></div></section>
+          <footer class="page-footer"><span>AMLGuard AI Nexus <b>·</b> Research prototype</span><span>Human review required <b>·</b> No automated adverse decisions</span></footer>
+        </section>
+
+        <section class="view" id="view-crypto">
+          <div class="page-heading"><div><div class="eyebrow">INVESTIGATION WORKSPACE / 01</div><h1>Crypto investigator</h1><p>Inspect an Elliptic transaction's source label, model signal, and graph neighborhood.</p></div><span class="date-chip"><span class="pulse"></span> ELLIPTIC DATASET</span></div>
+          <div class="notice notice-blue"><span class="notice-symbol">i</span><div><b>Research labels need context</b><p>Elliptic labels are dataset-provided research labels. Unknown examples should not be treated as verified illicit activity.</p></div></div>
+          <div class="investigation-grid"><section class="panel form-panel"><div class="panel-heading"><div><h2>Transaction lookup</h2><p>Enter a transaction ID from the installed Elliptic dataset</p></div><span class="metric-icon violet">⌘</span></div><form id="cryptoForm"><label for="txId">Transaction ID</label><input id="txId" name="txId" placeholder="e.g. 123456" autocomplete="off" required /><p class="field-hint">Use an ID that exists in <code>elliptic_txs_features.csv</code>.</p><div class="button-row"><button class="btn btn-primary" type="submit" data-action="score">Score transaction <span>→</span></button><button class="btn btn-secondary" type="button" id="graphBtn">Inspect graph</button></div></form><div class="divider-line"></div><div class="mini-info"><span class="info-icon">i</span><p>If the model has not been trained, the API returns a clear setup message. Run <code>python -m real_data.elliptic_pipeline</code> after downloading the dataset.</p></div></section>
+          <section class="panel result-panel"><div class="panel-heading"><div><h2>Investigation result</h2><p>API response appears here</p></div><span class="result-badge idle" id="cryptoResultBadge">AWAITING INPUT</span></div><div id="cryptoResult" class="empty-result"><div class="empty-illustration">⌕</div><b>No transaction selected</b><p>Enter a transaction ID and run a score or graph lookup to see the result.</p></div></section></div>
+          <section class="panel graph-panel"><div class="panel-heading"><div><h2>Network neighborhood</h2><p>Incoming and outgoing relationships returned by the graph API</p></div><span class="tag">Directed graph</span></div><div id="graphResult" class="graph-empty"><div class="graph-orbit"><span></span><i></i><b></b></div><b>Graph data not loaded</b><p>Choose “Inspect graph” to retrieve degree counts and neighbor IDs.</p></div></section>
+          <footer class="page-footer"><span>Elliptic research pipeline</span><span>Graph connectivity is investigative context, not proof of wrongdoing.</span></footer>
+        </section>
+
+        <section class="view" id="view-banking">
+          <div class="page-heading"><div><div class="eyebrow">INVESTIGATION WORKSPACE / 02</div><h1>Card fraud lab</h1><p>Score a feature vector using the trained European card-fraud research model.</p></div><span class="date-chip"><span class="pulse"></span> TABULAR ML</span></div>
+          <div class="notice notice-amber"><span class="notice-symbol">!</span><div><b>This is not an AML model</b><p>The dataset labels card fraud, not money laundering. Do not use this score to infer AML activity or make customer decisions.</p></div></div>
+          <div class="investigation-grid"><section class="panel form-panel"><div class="panel-heading"><div><h2>Feature input</h2><p>Provide numeric feature names matching the trained model</p></div><span class="metric-icon blue">▤</span></div><form id="bankForm"><label for="bankFeatures">Feature JSON</label><textarea id="bankFeatures" rows="11" spellcheck="false">{
+  "Time": 0,
+  "V1": 0,
+  "V2": 0,
+  "V3": 0,
+  "Amount": 100
+}</textarea><p class="field-hint">Example only. Replace with valid feature names and values from your pipeline. The model may require additional features.</p><div class="button-row"><button class="btn btn-primary" type="submit">Score card-fraud vector <span>→</span></button><button class="btn btn-secondary" type="button" id="resetBank">Reset example</button></div></form><div class="divider-line"></div><div class="mini-info"><span class="info-icon">i</span><p>Use <code>artifacts/banking_fraud_evaluation.json</code> and the training pipeline to confirm the model's expected features.</p></div></section>
+          <section class="panel result-panel"><div class="panel-heading"><div><h2>Scoring result</h2><p>Card-fraud model response</p></div><span class="result-badge idle" id="bankResultBadge">AWAITING INPUT</span></div><div id="bankResult" class="empty-result"><div class="empty-illustration">⌁</div><b>No feature vector submitted</b><p>Submit a numeric JSON object to call the local scoring API.</p></div></section></div>
+          <section class="panel"><div class="panel-heading"><div><h2>Input guidance</h2><p>Ensure the request matches the trained artifact schema</p></div></div><div class="guidance-grid"><div class="guidance-card"><span class="guidance-num">01</span><b>Feature names</b><p>Must match the columns used during training, including capitalization.</p></div><div class="guidance-card"><span class="guidance-num">02</span><b>Numeric values</b><p>Send numbers only. Do not include labels or target columns in the feature vector.</p></div><div class="guidance-card"><span class="guidance-num">03</span><b>Interpretation</b><p>Use model outputs for research and human review, never as a standalone decision.</p></div></div></section>
+          <footer class="page-footer"><span>European card-fraud dataset</span><span>Card fraud ≠ money laundering</span></footer>
+        </section>
+
+        <section class="view" id="view-datasets">
+          <div class="page-heading"><div><div class="eyebrow">DATA GOVERNANCE</div><h1>Data readiness</h1><p>Verify raw dataset availability, model artifacts, and research scope.</p></div><button class="btn btn-secondary" id="refreshDataBtn">↻ Refresh status</button></div>
+          <div class="notice notice-blue"><span class="notice-symbol">i</span><div><b>Raw data is intentionally not bundled</b><p>Download datasets from their original providers and review their current terms before use or redistribution.</p></div></div>
+          <div class="dataset-grid"><article class="panel dataset-card"><div class="dataset-card-top"><div class="pipeline-logo coin">₿</div><span class="result-badge idle" id="cryptoDatasetBadge">CHECKING</span></div><h2>Elliptic Bitcoin transaction graph</h2><p class="dataset-description">Research-labeled cryptocurrency transactions with transaction features and directed edges.</p><div class="dataset-facts"><div><span>Task</span><b>Illicit vs licit research classification</b></div><div><span>Graph</span><b>Transaction → transaction</b></div><div><span>Raw files</span><b>3 CSV files</b></div></div><div class="required-files"><b>Required files</b><code>elliptic_txs_features.csv</code><code>elliptic_txs_classes.csv</code><code>elliptic_txs_edgelist.csv</code></div><a class="btn btn-secondary full-btn" href="https://www.kaggle.com/datasets/ellipticco/elliptic-data-set" target="_blank" rel="noreferrer">Open dataset source ↗</a></article>
+          <article class="panel dataset-card"><div class="dataset-card-top"><div class="pipeline-logo bank">▤</div><span class="result-badge idle" id="bankDatasetBadge">CHECKING</span></div><h2>European credit-card fraud</h2><p class="dataset-description">Anonymized card transactions with existing fraud / non-fraud labels.</p><div class="dataset-facts"><div><span>Task</span><b>Card-fraud classification</b></div><div><span>Graph</span><b>Not supported by source IDs</b></div><div><span>Raw files</span><b>1 CSV file</b></div></div><div class="required-files"><b>Required file</b><code>creditcard.csv</code><div class="scope-warning">Not a money-laundering dataset. Do not report results as AML performance.</div></div><a class="btn btn-secondary full-btn" href="https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud" target="_blank" rel="noreferrer">Open dataset source ↗</a></article></div>
+          <section class="panel license-panel"><div class="panel-heading"><div><h2>Governance checklist</h2><p>Complete before training or publishing results</p></div><span class="tag tag-amber">Required for certification</span></div><div class="governance-list"><div><span class="governance-icon">✓</span><span><b>Record provenance</b><small>Source URL, retrieval date, dataset version and checksum.</small></span></div><div><span class="governance-icon">✓</span><span><b>Review license and terms</b><small>Confirm permitted research, redistribution and commercial use.</small></span></div><div><span class="governance-icon">✓</span><span><b>Keep labels honest</b><small>Unknown labels are not ground truth; card fraud is not AML.</small></span></div><div><span class="governance-icon">✓</span><span><b>Report limitations</b><small>Document leakage controls, class imbalance and human-review requirements.</small></span></div></div><a class="text-button" href="/docs/REAL_DATA_STRATEGY.md" target="_blank" rel="noreferrer">Read data strategy ↗</a></section>
+          <footer class="page-footer"><span>Dataset provenance and licensing matter</span><span>Last checked: <b id="datasetTimestamp">Not yet checked</b></span></footer>
+        </section>
+
+        <section class="view" id="view-alerts">
+          <div class="page-heading"><div><div class="eyebrow">REVIEW QUEUE</div><h1>Alerts</h1><p>Review saved model-score signals with source and provenance details. No alerts are seeded.</p></div><button class="btn btn-secondary" id="refreshAlertsBtn">↻ Refresh alerts</button></div>
+          <div class="notice notice-amber"><span class="notice-symbol">!</span><div><b>Alerts are not confirmed findings</b><p>Only save an alert after receiving a real API score or recording an explicitly documented analyst observation. Card-fraud alerts are not AML alerts.</p></div></div>
+          <section class="panel"><div class="panel-heading"><div><h2>Alert queue</h2><p id="alertCountLabel">Loading saved alerts…</p></div><select id="alertFilter" class="inline-select"><option value="">All statuses</option><option value="new">New</option><option value="reviewing">Reviewing</option><option value="escalated">Escalated</option><option value="dismissed">Dismissed</option></select></div><div id="alertsTable" class="table-wrap"><div class="empty-result"><b>No alerts loaded</b><p>Refresh to read saved records from the local database.</p></div></div></section>
+          <footer class="page-footer"><span>Source-backed alert records</span><span>Human review required</span></footer>
+        </section>
+
+        <section class="view" id="view-cases">
+          <div class="page-heading"><div><div class="eyebrow">CASE MANAGEMENT</div><h1>Investigation cases</h1><p>Create and track analyst-owned cases with durable local storage.</p></div><button class="btn btn-secondary" id="refreshCasesBtn">↻ Refresh cases</button></div>
+          <div class="investigation-grid"><section class="panel form-panel"><div class="panel-heading"><div><h2>Open a case</h2><p>Record an entity from a real source or investigation</p></div></div><form id="caseForm"><label for="caseTitle">Case title</label><input id="caseTitle" required minlength="3" maxlength="160" placeholder="e.g. Elliptic transaction review"/><label for="caseDataset" style="margin-top:14px">Dataset</label><select id="caseDataset" required><option value="elliptic">Elliptic cryptocurrency</option><option value="card_fraud">Card-fraud research</option><option value="other">Other / analyst investigation</option></select><label for="caseEntity" style="margin-top:14px">Entity / transaction reference</label><input id="caseEntity" required placeholder="Source transaction ID or case reference"/><label for="casePriority" style="margin-top:14px">Priority</label><select id="casePriority"><option value="low">Low</option><option value="medium" selected>Medium</option><option value="high">High</option><option value="critical">Critical</option></select><label for="caseSummary" style="margin-top:14px">Analyst notes</label><textarea id="caseSummary" rows="4" maxlength="4000" placeholder="Record evidence, uncertainty and next steps. Avoid unsupported conclusions."></textarea><div class="button-row" style="margin-top:14px"><button class="btn btn-primary" type="submit">Create case →</button></div></form></section><section class="panel"><div class="panel-heading"><div><h2>Case register</h2><p>Cases saved to the local SQLite workspace</p></div></div><div id="casesTable" class="table-wrap"><div class="empty-result"><b>No cases loaded</b><p>Create a case or refresh the register.</p></div></div></section></div>
+          <footer class="page-footer"><span>Analyst-owned case notes</span><span>Local SQLite storage · no seeded cases</span></footer>
+        </section>
+
+        <section class="view" id="view-reports">
+          <div class="page-heading"><div><div class="eyebrow">AUDIT & EXPORTS</div><h1>Reports</h1><p>Export the saved investigation workspace and inspect evaluation files generated by your actual training runs.</p></div><button class="btn btn-primary" id="refreshReportsBtn">Refresh report ↻</button></div>
+          <div class="metric-grid report-metrics"><article class="metric-card"><div class="metric-top"><span>Saved cases</span><span class="metric-icon violet">▣</span></div><div class="metric-value" id="reportCases">—</div><div class="metric-foot">From local workspace database</div></article><article class="metric-card"><div class="metric-top"><span>Saved alerts</span><span class="metric-icon orange">⚑</span></div><div class="metric-value" id="reportAlerts">—</div><div class="metric-foot">Only saved source-backed records</div></article><article class="metric-card"><div class="metric-top"><span>Report generated</span><span class="metric-icon blue">◷</span></div><div class="metric-value metric-status" id="reportTime">Not yet</div><div class="metric-foot">Local report API</div></article><article class="metric-card"><div class="metric-top"><span>Evidence standard</span><span class="metric-icon green">✓</span></div><div class="metric-value metric-status">Provenance</div><div class="metric-foot">Scores ≠ confirmed wrongdoing</div></article></div>
+          <section class="panel"><div class="panel-heading"><div><h2>Workspace exports</h2><p>These exports contain saved cases and alerts, not invented activity.</p></div></div><div class="export-grid"><a class="quick-action" href="/workspace/reports/export.csv"><span class="quick-icon green">⇩</span><span><b>Download CSV report</b><small>Cases and alerts in spreadsheet-friendly format</small></span><span class="action-arrow">↗</span></a><a class="quick-action" href="/workspace/reports/export.json" target="_blank" rel="noreferrer"><span class="quick-icon violet">{ }</span><span><b>Open JSON report</b><small>Summary, breakdowns and recent records</small></span><span class="action-arrow">↗</span></a></div><div class="divider-line"></div><div class="panel-heading"><div><h2>Evaluation evidence</h2><p>Only available after running the corresponding real-data training pipeline.</p></div></div><div id="evaluationFiles" class="evaluation-files"><p class="field-hint">Checking local evaluation files…</p></div><div class="result-disclaimer">Report metrics are not populated with demo values. If no evaluation artifact exists, the report will state that training has not yet generated evidence.</div></section>
+          <footer class="page-footer"><span>Audit-ready exports</span><span>Dataset-specific results must not be conflated</span></footer>
+        </section>
+      </div>
+    </main>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="/ui/app.js" defer></script>
+</body>
+</html>

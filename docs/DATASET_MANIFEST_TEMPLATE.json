@@ -1,0 +1,20 @@
+{
+  "dataset_name": "REPLACE_WITH_EXACT_DATASET_NAME",
+  "provider_url": "REPLACE_WITH_PROVIDER_URL",
+  "download_date_utc": "YYYY-MM-DD",
+  "version_or_release": "REPLACE_WITH_VERSION",
+  "files": [
+    {"filename": "REPLACE_WITH_FILENAME", "sha256": "REPLACE_WITH_SHA256", "rows": null, "columns": null}
+  ],
+  "license_name": "REVIEW_PROVIDER_TERMS_AND_RECORD_EXACT_LICENSE",
+  "license_url": "REPLACE_WITH_LICENSE_URL",
+  "permitted_uses_checked": {
+    "research_training": false,
+    "derived_model_sharing": false,
+    "raw_data_redistribution": false,
+    "commercial_use": false
+  },
+  "label_definition": "Describe source-provided labels and what they do not establish.",
+  "preprocessing_commit_or_version": "REPLACE_WITH_GIT_COMMIT_OR_RELEASE",
+  "notes": "Do not mark permissions true until verified against the exact downloaded release."
+}

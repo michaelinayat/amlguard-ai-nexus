@@ -1,0 +1,31 @@
+{
+  "root": {
+    "service": "AMLGuard AI Nexus",
+    "status": "running",
+    "mode": "public-data adapters; raw datasets and trained real-data models are not bundled",
+    "active_scoring": "Use /real-data routes after obtaining data and training models",
+    "legacy_demo": "Synthetic-data routes are disabled in this release",
+    "warning": "Research scores are triage signals, not proof of criminal activity."
+  },
+  "strategy": {
+    "mode": "public-real-data adapters; no raw dataset is bundled",
+    "cryptocurrency": {
+      "dataset": "Elliptic Bitcoin transaction graph",
+      "status": "awaiting_user_download",
+      "task": "research-labeled illicit-vs-licit transaction classification",
+      "graph": "directed transaction-to-transaction edges"
+    },
+    "banking": {
+      "dataset": "European Credit Card Fraud Detection",
+      "status": "awaiting_user_download",
+      "task": "card-fraud proxy, not AML",
+      "graph": "not available from this dataset because account/merchant relationship IDs are not provided"
+    },
+    "label_policy": "Do not create or infer ground-truth labels. Unknown labels are excluded from supervised metrics.",
+    "license_policy": "Review the exact provider and version terms before training, sharing, or commercial deployment."
+  },
+  "health": {
+    "status": "ok"
+  },
+  "legacy_score_status": 410
+}

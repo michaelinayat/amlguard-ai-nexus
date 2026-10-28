@@ -1,0 +1,12 @@
+flowchart LR
+    A[Elliptic public labeled features] --> P1[Elliptic preprocessing]
+    B[Elliptic public edge list] --> G1[Directed transaction graph]
+    G1 --> P1
+    C[Public card-fraud CSV with existing labels] --> P2[Banking fraud preprocessing]
+    P1 --> M1[Temporal ML training and evaluation]
+    P2 --> M2[Time-ordered ML training and evaluation]
+    M1 --> A1[Elliptic model and metrics]
+    M2 --> A2[Card-fraud model and metrics]
+    A1 --> API[FastAPI real-data routes]
+    A2 --> API
+    API --> H[Human review; no automated adverse action]
